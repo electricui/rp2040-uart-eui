@@ -9,13 +9,22 @@ In the main loop, any inbound bytes are passed to `eui_parse()` as they arrive. 
 ## Hardware Setup
 
 - Developed against a [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/).
+  - If using a board like the Adafruit RP2040 Feather, pass the `PICO_BOARD` setting to CMake - `cmake .. -DPICO_BOARD=adafruit_feather_rp2040`.
 - Exposes eui access over `uart0` on GP0(TX)/GP1(RX) labelled pins. Connect a USB-UART (TTL) adapter to these pins (and ground).
 - UART is configured to run at `115200` baud, 8N1 by default.
 - The onboard green LED (GP25) is used as a blinker for the standard [`hello-electric` example](https://electricui.com/docs/quick-start/ui).
+  - This pin definition may need to be modified to suit different board variants.
 
 ## Firmware Setup
 
 This is a normal `pico-sdk` based example project and should work with your normal development toolchain, assuming `PICO_SDK_PATH` has a correct reference to your toolchain. 
+
+```
+mkdir build
+cd build
+cmake ..
+make
+```
 
 ## Dependencies
 
